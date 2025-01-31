@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Profile Input Form</title>
+    <link rel="stylesheet" href="jobprofile.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Job Profile Submission</h2>
+        <form id="jobForm" action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <small class="error" id="nameError">Enter your name</small>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                <small class="error" id="emailError">Enter your Email</small>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter phone number"  required>
+                <small class="error" id="phoneError">Enter Phone Number</small>
+              
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle">Job Title:</label> 
+                <input type="text" id="jobTitle" name="jobTitle" placeholder="job title" required>
+                <small class="error" id="jobTitleError">Job Title</small>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="job-description">Job-Description</label>
+                <textarea id="job-description" placeholder="Enter Job Description" required></textarea>
+                <small class="error" id="descriptionError">Enter Job Discription</small>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="skill-set">Skill Set</label>
+                <input type="text" id="skill-set" placeholder="e.g., JavaScript, React, Node.js" required>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Years of Experience:</label>
+                <input type="number" id="experience" name="experience" placeholder="Enter your Experience" required>
+                <small class="error" id="experienceError">Enter Your Experience</small>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>document.getElementById('jobForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        let isValid = true;
+    
+        // Validate Name
+        const name = document.getElementById('name').value.trim();
+        const nameError = document.getElementById('nameError');
+        if (!name) {
+            nameError.textContent = 'Name is required.';
+            nameError.style.visibility = 'visible';
+            isValid = false;
+        } else {
+            nameError.style.visibility = 'hidden';
+        }
+    
+        // Validate Email
+        const email = document.getElementById('email').value.trim();
+        const emailError = document.getElementById('emailError');
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!email || !emailPattern.test(email)) {
+            emailError.textContent = 'Please enter a valid email.';
+            emailError.style.visibility = 'visible';
+            isValid = false;
+        } else {
+            emailError.style.visibility = 'hidden';
+        }
+    
+        // Validate Phone Number
+        const phone = document.getElementById('phone').value.trim();
+        const phoneError = document.getElementById('phoneError');
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phone || !phonePattern.test(phone)) {
+            phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+            phoneError.style.visibility = 'visible';
+            isValid = false;
+        } else {
+            phoneError.style.visibility = 'hidden';
+        }
+    
+        // Validate Job Title
+        const jobTitle = document.getElementById('jobTitle').value.trim();
+        const jobTitleError = document.getElementById('jobTitleError');
+        if (!jobTitle) {
+            jobTitleError.textContent = 'Job Title is required.';
+            jobTitleError.style.visibility = 'visible';
+            isValid = false;
+        } else {
+            jobTitleError.style.visibility = 'hidden';
+        }
+    
+        // Validate Years of Experience
+        const experience = document.getElementById('experience').value.trim();
+        const experienceError = document.getElementById('experienceError');
+        if (!experience || experience <= 0) {
+            experienceError.textContent = 'Experience must be greater than 0.';
+            experienceError.style.visibility = 'visible';
+            isValid = false;
+        } else {
+            experienceError.style.visibility = 'hidden';
+        }
+    
+        if (isValid) {
+            // If form is valid, you can submit the form
+            this.submit();
+        }
+    });
+    </script>
+</body>
+</html>

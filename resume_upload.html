@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Upload</title>
+    <link rel="stylesheet" href="resume.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Resume</h1>
+        
+        <!-- Instructions -->
+        <div class="instructions">
+            <h2>Instructions for Uploading Your Resume</h2>
+            <ul>
+                <li><strong>Accepted File Formats:</strong> PDF (.pdf), Microsoft Word (.doc, .docx), Text File (.txt)</li>
+                <li><strong>File Size Limit:</strong> Maximum size of 10 MB</li>
+                <li><strong>File Naming:</strong> Use your full name and position (e.g., <em>JohnDoe_SoftwareEngineer.pdf</em>)</li>
+                <li><strong>File Quality:</strong> Ensure the document is clear and readable. PDFs should not be password protected or scanned images.</li>
+            </ul>
+        </div>
+
+        <!-- Upload Form -->
+        <form action="/upload" method="post" >
+            <label for="resume">Choose a file to upload:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,.txt" required>
+            <button type="submit">Upload Resume</button>
+        </form>
+    </div>
+</body>
+</html>

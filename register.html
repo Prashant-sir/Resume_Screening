@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>/* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            color: #4a4a4a;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="radio"],
+        input[type="checkbox"],
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .gender-group {
+            margin-top: 10px;
+        }
+        
+        .gender-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .login-link a {
+            font-weight: 600;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+                width: 90%;
+            }
+        
+            h2 {
+                font-size: 20px;
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create an Account</h2>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group gender-group">
+                <label>Gender</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the <a href="#">Terms and Conditions</a>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Create Account</button>
+            </div>
+        </form>
+        <p class="login-link">Already have an account? <a href="#">Login</a></p>
+    </div>
+
+    <script>function validateForm() {
+        let form = document.getElementById("registrationForm");
+    
+        let fullName = form["fullName"].value;
+        let email = form["email"].value;
+        let password = form["password"].value;
+        let confirmPassword = form["confirmPassword"].value;
+        let phone = form["phone"].value;
+        let terms = form["terms"].checked;
+    
+        // Full name validation
+        if (fullName.trim() === "") {
+            alert("Full Name is required.");
+            return false;
+        }
+    
+        // Email validation
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+    
+        // Password validation
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return false;
+        }
+    
+        // Confirm Password validation
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+    
+        // Phone number validation (optional example, simple pattern)
+        const phonePattern = /^\d{10}$/;
+        if (!phonePattern.test(phone)) {
+            alert("Please enter a valid phone number (10 digits).");
+            return false;
+        }
+    
+        // Terms and conditions validation
+        if (!terms) {
+            alert("You must agree to the terms and conditions.");
+            return false;
+        }
+    
+        return true; // If everything is valid, submit the form
+    }
+    </script>
+</body>
+</html>

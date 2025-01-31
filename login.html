@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <section id="loginForm">
+        <div class="container">
+            <h2>Login</h2>
+            <form action="#">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+    
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+    
+                <button type="submit">Login</button>
+			<p>Don't have an account? <a href="register.html" style="text-decoration: none;">Register</a></p>
+            </form>
+        </div>
+    </section>
+    <script>document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+    
+        // Get the entered username and password
+        var enteredUsername = document.getElementById('email').value;
+        var enteredPassword = document.getElementById('password').value;
+    
+        // Set the correct username and password
+        var correctUsername = 'admin1234@gmail.com';
+        var correctPassword = '12345678#';
+    
+        // Compare the entered username and password with the correct ones
+        if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
+            alert('Login successful!');
+            window.location.href = 'profile.html'; // Redirect to register.html
+        } else {
+            alert('Incorrect username or password. Please try again.');
+        }
+    });
+    </script>
+    
+</body>
+    
+</html>
